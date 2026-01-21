@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tu emprendimiento online - Productos de calidad en hogar, tecnología, moda y más. Envíos a toda Colombia.">
+    <meta name="keywords" content="tienda online, productos, hogar, tecnología, moda, bebé, belleza, electrodomésticos">
+    <meta name="author" content="Tu Emprendimiento">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tu Emprendimiento - Tienda Online">
+    <meta property="og:description" content="Los mejores productos al mejor precio">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Tu Emprendimiento">
+    
+    <title>Tu Emprendimiento | Tienda Online</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Tu Emprendimiento",
+      "description": "Tienda online de productos variados",
+      "url": "https://tudominio.com",
+      "telephone": "+57-XXX-XXX-XXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CO"
+      }
+    }
+    </script>
+    
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        
+        body { overflow-x: hidden; }
+        
+        .header-fixed { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1000;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .menu-sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .menu-sidebar.active { left: 0; }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            display: none;
+        }
+        
+        .menu-overlay.active { display: block; }
+        
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .cart-sidebar.active { right: 0; }
+        
+        .slider { position: relative; overflow: hidden; height: 500px; }
+        
+        .slide {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .slide.active { opacity: 1; }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active { 
+            background: white;
+            width: 30px;
+            border-radius: 6px;
+        }
+        
+        .product-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge-new { background: #10b981; color: white; }
+        .badge-sale { background: #ef4444; color: white; }
+        
+        .chat-bot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+        
+        .chat-bot:hover { transform: scale(1.1); }
+        
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 998;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chat-window.active { display: flex; }
+        
+        @media (max-width: 768px) {
+            .cart-sidebar { width: 100%; right: -100%; }
+            .slider { height: 300px; }
+            .chat-window { width: 90%; right: 5%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- HEADER -->
+    <header class="header-fixed">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="text-white text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-store text-white text-3xl"></i>
+                    <span class="text-white font-bold text-xl hidden sm:block">JUANDASANTIAGO</span>
+                </div>
+            </div>
+            
+            <div class="flex-1 max-w-md mx-4 hidden md:block">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Buscar productos..." 
+                        class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                    >
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+            
+            <button id="cartBtn" class="relative text-white text-2xl">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+            </button>
+        </div>
+        
+        <!-- Buscador móvil -->
+        <div class="md:hidden px-4 pb-3">
+            <div class="relative">
+                <input 
+                    type="text" 
+                    placeholder="Buscar productos..." 
+                    class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                >
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- MENU HAMBURGUESA -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <aside class="menu-sidebar" id="menuSidebar">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-purple-600">Categorías</h2>
+                <button id="closeMenu" class="text-2xl text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav>
+                <ul class="space-y-3">
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="hogar">
+                        <i class="fas fa-home text-purple-600 w-6"></i>
+                        <span>Hogar</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="tecnologia">
+                        <i class="fas fa-laptop text-purple-600 w-6"></i>
+                        <span>Tecnología</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="jugueteria">
+                        <i class="fas fa-gamepad text-purple-600 w-6"></i>
+                        <span>Juguetería</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="deporte">
+                        <i class="fas fa-football-ball text-purple-600 w-6"></i>
+                        <span>Deporte</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="moda">
+                        <i class="fas fa-tshirt text-purple-600 w-6"></i>
+                        <span>Moda y Accesorios</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="bebe">
+                        <i class="fas fa-baby text-purple-600 w-6"></i>
+                        <span>Bebé</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="belleza">
+                        <i class="fas fa-spa text-purple-600 w-6"></i>
+                        <span>Belleza</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="electrodomesticos">
+                        <i class="fas fa-blender text-purple-600 w-6"></i>
+                        <span>Electrodomésticos</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="utiles">
+                        <i class="fas fa-pencil-alt text-purple-600 w-6"></i>
+                        <span>Útiles Escolares</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="ferreteria">
+                        <i class="fas fa-wrench text-purple-600 w-6"></i>
+                        <span>Ferretería</span>
+                    </a></li>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="otras">
+                        <i class="fas fa-th text-purple-600 w-6"></i>
+                        <span>Otras</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- CARRITO SIDEBAR -->
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 bg-purple-600 text-white">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-2xl font-bold">Mi Carrito</h2>
+                    <button id="closeCart" class="text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="cartItems" class="flex-1 overflow-y-auto p-6">
+                <p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>
+            </div>
+            
+            <div class="p-6 border-t bg-gray-50">
+                <div class="flex justify-between mb-4">
+                    <span class="font-semibold">Total:</span>
+                    <span class="text-2xl font-bold text-purple-600">$<span id="cartTotal">0</span></span>
+                </div>
+                <button id="checkoutBtn" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    Comprar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="pt-32 md:pt-24">
+        
+        <!-- SLIDER HERO -->
+        <section class="slider mb-12">
+            <div class="slide active">
+                <img src="https://via.placeholder.com/1920x500/667eea/ffffff?text=PROMOCIONES+ESPECIALES" alt="Promoción 1">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-5xl font-bold mb-4">¡GRANDES OFERTAS!</h1>
+                        <p class="text-xl">Hasta 50% de descuento</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/1920x500/764ba2/ffffff?text=PRODUCTOS+DESTACADOS" alt="Promoción 2">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-5xl font-bold mb-4">PRODUCTOS DESTACADOS</h1>
+                        <p class="text-xl">Lo mejor para ti y tu familia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/1920x500/f093fb/ffffff?text=ENVIOS+GRATIS" alt="Promoción 3">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-5xl font-bold mb-4">ENVÍOS GRATIS</h1>
+                        <p class="text-xl">En compras mayores a $50.000</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS DESTACADOS -->
+        <section class="container mx-auto px-4 mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-gray-800">Productos Destacados</h2>
+            
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">¿NECESITAS AYUDA?</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone"></i>
+                            <span>Línea de Atención: +573007799229</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: +573007799229</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>juandasantiago920@gmail.com </span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">INFORMACIÓN</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-purple-400 transition">Sobre Nosotros</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Política de Devoluciones</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SÍGUENOS EN</h3>
+                    <div class="flex gap-4">
+                        <a href="https://www.facebook.com/share/1BszFj2UFK/ " target="_blank" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/juandasantiago920?igsh=MWZzcW16ZWh1d2l1cw==" target="_blank" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@juanda.santiago.9?_r=1&_t=ZS-93GY7NCRXW8 " target="_blank" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p>&copy; 2026 JUANDA SANTIAGO. Todos los Derechos Reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOT DE AYUDA -->
+    <div class="chat-bot" id="chatBot">
+        <i class="fas fa-comments text-white text-2xl"></i>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="bg-purple-600 text-white p-4 rounded-t-lg flex items-center justify-between">
+            <h3 class="font-bold">Asistente Virtual</h3>
+            <button id="closeChatBtn" class="text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto">
+            <div class="bg-gray-100 p-3 rounded-lg mb-3">
+                <p class="text-sm">¡Hola! 👋 ¿En qué puedo ayudarte?</p>
+            </div>
+            <div class="space-y-2">
+                <button class="w-full bg-white border border-gray-300 p-3 rounded-lg text-left hover:bg-gray-50 transition text-sm">
+                    ¿Cómo comprar?
+                </button>
+                <button class="w-full bg-white border border-gray-300 p-3 rounded-lg text-left hover:bg-gray-50 transition text-sm">
+                    Métodos de pago
+                </button>
+                <button class="w-full bg-white border border-gray-300 p-3 rounded-lg text-left hover:bg-gray-50 transition text-sm">
+                    Tiempos de envío
+                </button>
+                <button class="w-full bg-white border border-gray-300 p-3 rounded-lg text-left hover:bg-gray-50 transition text-sm">
+                    Políticas de devolución
+                </button>
+            </div>
+        </div>
+        <div class="p-4 border-t">
+            <button class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp"></i>
+                Chatear por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN DE SUPABASE
+        const SUPABASE_URL = 'TU_URL_DE_SUPABASE';
+        const SUPABASE_KEY = 'TU_KEY_PUBLICA_DE_SUPABASE';
+        
+        // Estado global
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let currentSlide = 0;
+        let products = [];
+
+        // PRODUCTOS DE EJEMPLO (Reemplazar con datos de Supabase)
+        const sampleProducts = [
+            { id: 1, name: 'Laptop HP', price: 1500000, category: 'tecnologia', image: 'https://via.placeholder.com/300x300/667eea/ffffff?text=Laptop', badge: 'new' },
+            { id: 2, name: 'Juego de Sábanas', price: 80000, category: 'hogar', image: 'https://via.placeholder.com/300x300/764ba2/ffffff?text=Sabanas', badge: 'sale' },
+            { id: 3, name: 'Pelota de Fútbol', price: 45000, category: 'deporte', image: 'https://via.placeholder.com/300x300/f093fb/ffffff?text=Pelota', badge: null },
+            { id: 4, name: 'Set de Maquillaje', price: 120000, category: 'belleza', image: 'https://via.placeholder.com/300x300/4facfe/ffffff?text=Maquillaje', badge: 'new' },
+            { id: 5, name: 'Tablet Samsung', price: 800000, category: 'tecnologia', image: 'https://via.placeholder.com/300x300/00f2fe/ffffff?text=Tablet', badge: 'sale' },
+            { id: 6, name: 'Cuna para Bebé', price: 350000, category: 'bebe', image: 'https://via.placeholder.com/300x300/43e97b/ffffff?text=Cuna', badge: null },
+            { id: 7, name: 'Licuadora Oster', price: 180000, category: 'electrodomesticos', image: 'https://via.placeholder.com/300x300/38f9d7/ffffff?text=Licuadora', badge: 'new' },
+            { id: 8, name: 'Kit Escolar', price: 55000, category: 'utiles', image: 'https://via.placeholder.com/300x300/fa709a/ffffff?text=Utiles', badge: null }
+        ];
+
+        // INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProducts();
+            startSlider();
+            updateCartUI();
+            setupEventListeners();
+        });
+
+        // CARGAR PRODUCTOS
+        function loadProducts(category = null) {
+            products = category ? sampleProducts.filter(p => p.category === category) : sampleProducts;
+            
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => `
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-md relative">
+                    ${product.badge ? `<span class="badge badge-${product.badge}">${product.badge === 'new' ? 'NUEVO' : 'OFERTA'}</span>` : ''}
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">${product.name}</h3>
+                        <p class="text-2xl font-bold text-purple-600 mb-4">$${product.price.toLocaleString()}</p>
+                        <button onclick="addToCart(${product.id})" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-cart-plus"></i>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // AGREGAR AL CARRITO
+        function addToCart(productId) {
+            const product = sampleProducts.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+            
+            // Animación de feedback
+            const btn = event.target.closest('button');
+            btn.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
+            btn.classList.add('bg-green-500');
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
+                btn.classList.remove('bg-green-500');
+            }, 1500);
+        }
+
+        // ACTUALIZAR UI DEL CARRITO
+        function updateCartUI() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('cartTotal').textContent = total.toLocaleString();
+            
+            const cartItems = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">Tu carrito está vacío</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 mb-4 pb-4 border-b">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded">
+                        <div class="flex-1">
+                            <h4 class="font-semibold">${item.name}</h4>
+                            <p class="text-purple-600 font-bold">$${item.price.toLocaleString()}</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">-</button>
+                                <span class="font-semibold">${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">+</button>
+                                <button onclick="removeFromCart(${item.id})" class="ml-auto text-red-500">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // ACTUALIZAR CANTIDAD
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartUI();
+                }
+            }
+        }
+
+        // REMOVER DEL CARRITO
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        // CHECKOUT
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            let message = '¡Hola! Quiero hacer un pedido:%0A%0A';
+            
+            cart.forEach(item => {
+                message += `✅ ${item.name}%0A`;
+                message += `   Cantidad: ${item.quantity}%0A`;
+                message += `   Precio: ${item.price.toLocaleString()}%0A%0A`;
+            });
+            
+            message += `💰 *TOTAL: ${total.toLocaleString()}*%0A%0A`;
+            message += '¿Podrían confirmar disponibilidad?';
+            
+            const whatsappNumber = '573XXXXXXXXX'; // REEMPLAZAR CON TU NÚMERO
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        });
+
+        // SLIDER
+        function startSlider() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    showSlide(parseInt(dot.dataset.slide));
+                });
+            });
+            
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 4000);
+        }
+
+        // EVENT LISTENERS
+        function setupEventListeners() {
+            // Menú
+            document.getElementById('menuBtn').addEventListener('click', () => {
+                document.getElementById('menuSidebar').classList.add('active');
+                document.getElementById('menuOverlay').classList.add('active');
+            });
+
+            document.getElementById('closeMenu').addEventListener('click', closeMenu);
+            document.getElementById('menuOverlay').addEventListener('click', closeMenu);
+
+            function closeMenu() {
+                document.getElementById('menuSidebar').classList.remove('active');
+                document.getElementById('menuOverlay').classList.remove('active');
+            }
+
+            // Categorías
+            document.querySelectorAll('[data-category]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = e.currentTarget.dataset.category;
+                    loadProducts(category);
+                    closeMenu();
+                    window.scrollTo({ top: 600, behavior: 'smooth' });
+                });
+            });
+
+            // Carrito
+            document.getElementById('cartBtn').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.add('active');
+                document.getElementById('menuOverlay').classList.add('active');
+            });
+
+            document.getElementById('closeCart').addEventListener('click', closeCart);
+
+            function closeCart() {
+                document.getElementById('cartSidebar').classList.remove('active');
+                document.getElementById('menuOverlay').classList.remove('active');
+            }
+
+            // Chat Bot
+            document.getElementById('chatBot').addEventListener('click', () => {
+                document.getElementById('chatWindow').classList.toggle('active');
+            });
+
+            document.getElementById('closeChatBtn').addEventListener('click', () => {
+                document.getElementById('chatWindow').classList.remove('active');
+            });
+
+            // Búsqueda
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                const filtered = sampleProducts.filter(p => 
+                    p.name.toLowerCase().includes(query)
+                );
+                
+                if (query.length > 0) {
+                    products = filtered;
+                    const grid = document.getElementById('productsGrid');
+                    if (filtered.length === 0) {
+                        grid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-8">No se encontraron productos</p>';
+                    } else {
+                        loadProducts();
+                    }
+                } else {
+                    loadProducts();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
