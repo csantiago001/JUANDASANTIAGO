@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tu emprendimiento online - Productos de calidad en hogar, tecnología, moda y más. Envíos a toda Colombia.">
     <meta name="keywords" content="tienda online, productos, hogar, tecnología, moda, bebé, belleza, electrodomésticos">
-    <meta name="author" content="Tu Emprendimiento">
+    <meta name="author" content="JUANDA SANTIAGO">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tu Emprendimiento - Tienda Online">
+    <meta property="og:title" content="JUANDASANTIAGO - Tienda Online">
     <meta property="og:description" content="Los mejores productos al mejor precio">
     <meta property="og:image" content="https://via.placeholder.com/1200x630">
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Tu Emprendimiento">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JUANDASANTIAGO">
     
-    <title>Tu Emprendimiento | Tienda Online</title>
+    <title>JUANDASANTIAGO | Tienda Online</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,10 +33,10 @@
     {
       "@context": "https://schema.org",
       "@type": "Store",
-      "name": "Tu Emprendimiento",
+      "name": "JUANDASANTIAGO",
       "description": "Tienda online de productos variados",
       "url": "https://tudominio.com",
-      "telephone": "+57-XXX-XXX-XXXX",
+      "telephone": "+573007799229",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "CO"
@@ -47,7 +47,7 @@
     <style>
         * { font-family: 'Poppins', sans-serif; }
         
-        body { overflow-x: hidden; }
+        body { overflow-x: hidden; background-color: #fdf9f9; }
         
         .header-fixed { 
             position: fixed; 
@@ -55,7 +55,7 @@
             left: 0; 
             right: 0; 
             z-index: 1000;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ca9ba3 0%, #b87d8a 100%);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
@@ -149,7 +149,8 @@
         
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(227, 77, 140, 0.2);
+            border: 2px solid #d4af37;
         }
         
         .badge {
@@ -160,10 +161,11 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            color: white;
         }
         
-        .badge-new { background: #10b981; color: white; }
-        .badge-sale { background: #ef4444; color: white; }
+        .badge-new { background: #e64d8c; }
+        .badge-sale { background: #d4af37; }
         
         .chat-bot {
             position: fixed;
@@ -172,12 +174,12 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #e64d8c 0%, #ca9ba3 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(227, 77, 140, 0.4);
             z-index: 999;
             transition: transform 0.3s;
         }
@@ -217,7 +219,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="flex items-center gap-2">
-                    <i class="fas fa-store text-white text-3xl"></i>
+                    <!-- LOGO LOCAL (reemplaza "logo.png" por el nombre real de tu archivo) -->
+                    <img src="logo.png" alt="Logo Juanda Santiago" class="w-10 h-10 rounded-full">
                     <span class="text-white font-bold text-xl hidden sm:block">JUANDASANTIAGO</span>
                 </div>
             </div>
@@ -228,7 +231,7 @@
                         type="text" 
                         id="searchInput"
                         placeholder="Buscar productos..." 
-                        class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-[#ca9ba3]"
                     >
                     <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                 </div>
@@ -245,8 +248,9 @@
             <div class="relative">
                 <input 
                     type="text" 
+                    id="mobileSearchInput"
                     placeholder="Buscar productos..." 
-                    class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                    class="w-full px-4 py-2 rounded-full pl-10 focus:outline-none focus:ring-2 focus:ring-[#ca9ba3]"
                 >
                 <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
             </div>
@@ -258,7 +262,7 @@
     <aside class="menu-sidebar" id="menuSidebar">
         <div class="p-6">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-purple-600">Categorías</h2>
+                <h2 class="text-2xl font-bold text-[#e64d8c]">Categorías</h2>
                 <button id="closeMenu" class="text-2xl text-gray-500">
                     <i class="fas fa-times"></i>
                 </button>
@@ -266,48 +270,48 @@
             
             <nav>
                 <ul class="space-y-3">
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="hogar">
-                        <i class="fas fa-home text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="hogar">
+                        <i class="fas fa-home text-[#e64d8c] w-6"></i>
                         <span>Hogar</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="tecnologia">
-                        <i class="fas fa-laptop text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="tecnologia">
+                        <i class="fas fa-laptop text-[#e64d8c] w-6"></i>
                         <span>Tecnología</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="jugueteria">
-                        <i class="fas fa-gamepad text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="jugueteria">
+                        <i class="fas fa-gamepad text-[#e64d8c] w-6"></i>
                         <span>Juguetería</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="deporte">
-                        <i class="fas fa-football-ball text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="deporte">
+                        <i class="fas fa-football-ball text-[#e64d8c] w-6"></i>
                         <span>Deporte</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="moda">
-                        <i class="fas fa-tshirt text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="moda">
+                        <i class="fas fa-tshirt text-[#e64d8c] w-6"></i>
                         <span>Moda y Accesorios</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="bebe">
-                        <i class="fas fa-baby text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="bebe">
+                        <i class="fas fa-baby text-[#e64d8c] w-6"></i>
                         <span>Bebé</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="belleza">
-                        <i class="fas fa-spa text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="belleza">
+                        <i class="fas fa-spa text-[#e64d8c] w-6"></i>
                         <span>Belleza</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="electrodomesticos">
-                        <i class="fas fa-blender text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="electrodomesticos">
+                        <i class="fas fa-blender text-[#e64d8c] w-6"></i>
                         <span>Electrodomésticos</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="utiles">
-                        <i class="fas fa-pencil-alt text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="utiles">
+                        <i class="fas fa-pencil-alt text-[#e64d8c] w-6"></i>
                         <span>Útiles Escolares</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="ferreteria">
-                        <i class="fas fa-wrench text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="ferreteria">
+                        <i class="fas fa-wrench text-[#e64d8c] w-6"></i>
                         <span>Ferretería</span>
                     </a></li>
-                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-purple-50 rounded-lg transition" data-category="otras">
-                        <i class="fas fa-th text-purple-600 w-6"></i>
+                    <li><a href="#" class="flex items-center gap-3 p-3 hover:bg-[#e64d8c]/10 rounded-lg transition" data-category="otras">
+                        <i class="fas fa-th text-[#e64d8c] w-6"></i>
                         <span>Otras</span>
                     </a></li>
                 </ul>
@@ -318,7 +322,7 @@
     <!-- CARRITO SIDEBAR -->
     <aside class="cart-sidebar" id="cartSidebar">
         <div class="h-full flex flex-col">
-            <div class="p-6 bg-purple-600 text-white">
+            <div class="p-6 bg-[#e64d8c] text-white">
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl font-bold">Mi Carrito</h2>
                     <button id="closeCart" class="text-2xl">
@@ -334,7 +338,7 @@
             <div class="p-6 border-t bg-gray-50">
                 <div class="flex justify-between mb-4">
                     <span class="font-semibold">Total:</span>
-                    <span class="text-2xl font-bold text-purple-600">$<span id="cartTotal">0</span></span>
+                    <span class="text-2xl font-bold text-[#e64d8c]">$<span id="cartTotal">0</span></span>
                 </div>
                 <button id="checkoutBtn" class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition flex items-center justify-center gap-2">
                     <i class="fab fa-whatsapp text-xl"></i>
@@ -350,7 +354,7 @@
         <!-- SLIDER HERO -->
         <section class="slider mb-12">
             <div class="slide active">
-                <img src="https://via.placeholder.com/1920x500/667eea/ffffff?text=PROMOCIONES+ESPECIALES" alt="Promoción 1">
+                <img src="https://via.placeholder.com/1920x500/ca9ba3/ffffff?text=PROMOCIONES+ESPECIALES" alt="Promoción 1">
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="text-center text-white">
                         <h1 class="text-5xl font-bold mb-4">¡GRANDES OFERTAS!</h1>
@@ -359,7 +363,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="https://via.placeholder.com/1920x500/764ba2/ffffff?text=PRODUCTOS+DESTACADOS" alt="Promoción 2">
+                <img src="https://via.placeholder.com/1920x500/b87d8a/ffffff?text=PRODUCTOS+DESTACADOS" alt="Promoción 2">
                 <div class="absolute inset-0 flex items-center justify-center">
                     <div class="text-center text-white">
                         <h1 class="text-5xl font-bold mb-4">PRODUCTOS DESTACADOS</h1>
@@ -405,15 +409,15 @@
                     <ul class="space-y-2">
                         <li class="flex items-center gap-2">
                             <i class="fas fa-phone"></i>
-                            <span>Línea de Atención: +573007799229</span>
+                            <span>Línea de Atención: +57 300 779 9229</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp: +573007799229</span>
+                            <span>WhatsApp: +57 300 779 9229</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <i class="fas fa-envelope"></i>
-                            <span>juandasantiago920@gmail.com </span>
+                            <span>juandasantiago920@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -421,23 +425,23 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">INFORMACIÓN</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-purple-400 transition">Sobre Nosotros</a></li>
-                        <li><a href="#" class="hover:text-purple-400 transition">Términos y Condiciones</a></li>
-                        <li><a href="#" class="hover:text-purple-400 transition">Política de Privacidad</a></li>
-                        <li><a href="#" class="hover:text-purple-400 transition">Política de Devoluciones</a></li>
+                        <li><a href="#" class="hover:text-[#e64d8c] transition">Sobre Nosotros</a></li>
+                        <li><a href="#" class="hover:text-[#e64d8c] transition">Términos y Condiciones</a></li>
+                        <li><a href="#" class="hover:text-[#e64d8c] transition">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-[#e64d8c] transition">Política de Devoluciones</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h3 class="text-xl font-bold mb-4">SÍGUENOS EN</h3>
                     <div class="flex gap-4">
-                        <a href="https://www.facebook.com/share/1BszFj2UFK/ " target="_blank" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                        <a href="https://www.facebook.com/share/1BszFj2UFK/" target="_blank" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
                             <i class="fab fa-facebook-f text-xl"></i>
                         </a>
                         <a href="https://www.instagram.com/juandasantiago920?igsh=MWZzcW16ZWh1d2l1cw==" target="_blank" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-500 rounded-full flex items-center justify-center hover:opacity-80 transition">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@juanda.santiago.9?_r=1&_t=ZS-93GY7NCRXW8 " target="_blank" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition">
+                        <a href="https://www.tiktok.com/@juanda.santiago.9?_r=1&_t=ZS-93GY7NCRXW8" target="_blank" class="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition">
                             <i class="fab fa-tiktok text-xl"></i>
                         </a>
                     </div>
@@ -456,7 +460,7 @@
     </div>
 
     <div class="chat-window" id="chatWindow">
-        <div class="bg-purple-600 text-white p-4 rounded-t-lg flex items-center justify-between">
+        <div class="bg-[#e64d8c] text-white p-4 rounded-t-lg flex items-center justify-between">
             <h3 class="font-bold">Asistente Virtual</h3>
             <button id="closeChatBtn" class="text-xl">
                 <i class="fas fa-times"></i>
@@ -483,25 +487,21 @@
         </div>
         <div class="p-4 border-t">
             <button 
-				onclick="window.open('https://wa.me/573007799229', '_blank')"
-				class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2">
-				<i class="fab fa-whatsapp"></i>
-				Chatear por WhatsApp
-			</button>
+                onclick="window.open('https://wa.me/573007799229', '_blank')"
+                class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp"></i>
+                Chatear por WhatsApp
+            </button>
         </div>
     </div>
 
     <script>
-        // CONFIGURACIÓN DE SUPABASE
-        const SUPABASE_URL = 'TU_URL_DE_SUPABASE';
-        const SUPABASE_KEY = 'TU_KEY_PUBLICA_DE_SUPABASE';
-        
         // Estado global
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let currentSlide = 0;
         let products = [];
 
-        // PRODUCTOS DE EJEMPLO (Reemplazar con datos de Supabase)
+        // PRODUCTOS DE EJEMPLO
         const sampleProducts = [
             { id: 1, name: 'Laptop HP', price: 1500000, category: 'tecnologia', image: 'https://via.placeholder.com/300x300/667eea/ffffff?text=Laptop', badge: 'new' },
             { id: 2, name: 'Juego de Sábanas', price: 80000, category: 'hogar', image: 'https://via.placeholder.com/300x300/764ba2/ffffff?text=Sabanas', badge: 'sale' },
@@ -526,14 +526,18 @@
             products = category ? sampleProducts.filter(p => p.category === category) : sampleProducts;
             
             const grid = document.getElementById('productsGrid');
+            if (products.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-500 py-8">No se encontraron productos</p>';
+                return;
+            }
             grid.innerHTML = products.map(product => `
                 <div class="product-card bg-white rounded-lg overflow-hidden shadow-md relative">
                     ${product.badge ? `<span class="badge badge-${product.badge}">${product.badge === 'new' ? 'NUEVO' : 'OFERTA'}</span>` : ''}
                     <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
                     <div class="p-4">
                         <h3 class="font-semibold text-lg mb-2">${product.name}</h3>
-                        <p class="text-2xl font-bold text-purple-600 mb-4">$${product.price.toLocaleString()}</p>
-                        <button onclick="addToCart(${product.id})" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition flex items-center justify-center gap-2">
+                        <p class="text-2xl font-bold text-[#e64d8c] mb-4">$${product.price.toLocaleString()}</p>
+                        <button onclick="addToCart(${product.id})" class="w-full bg-[#e64d8c] text-white py-2 rounded-lg hover:bg-[#ca9ba3] transition flex items-center justify-center gap-2">
                             <i class="fas fa-cart-plus"></i>
                             Agregar al Carrito
                         </button>
@@ -556,13 +560,14 @@
             localStorage.setItem('cart', JSON.stringify(cart));
             updateCartUI();
             
-            // Animación de feedback
+            // Feedback visual
             const btn = event.target.closest('button');
+            const originalHTML = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-check"></i> ¡Agregado!';
-            btn.classList.add('bg-green-500');
+            btn.classList.replace('bg-[#e64d8c]', 'bg-green-500');
             setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-cart-plus"></i> Agregar al Carrito';
-                btn.classList.remove('bg-green-500');
+                btn.innerHTML = originalHTML;
+                btn.classList.replace('bg-green-500', 'bg-[#e64d8c]');
             }, 1500);
         }
 
@@ -583,7 +588,7 @@
                         <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded">
                         <div class="flex-1">
                             <h4 class="font-semibold">${item.name}</h4>
-                            <p class="text-purple-600 font-bold">$${item.price.toLocaleString()}</p>
+                            <p class="text-[#e64d8c] font-bold">$${item.price.toLocaleString()}</p>
                             <div class="flex items-center gap-2 mt-2">
                                 <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center">-</button>
                                 <span class="font-semibold">${item.quantity}</span>
@@ -619,7 +624,7 @@
             updateCartUI();
         }
 
-        // CHECKOUT
+        // CHECKOUT POR WHATSAPP
         document.getElementById('checkoutBtn').addEventListener('click', () => {
             if (cart.length === 0) {
                 alert('Tu carrito está vacío');
@@ -632,17 +637,16 @@
             cart.forEach(item => {
                 message += `✅ ${item.name}%0A`;
                 message += `   Cantidad: ${item.quantity}%0A`;
-                message += `   Precio: ${item.price.toLocaleString()}%0A%0A`;
+                message += `   Precio: $${item.price.toLocaleString()}%0A%0A`;
             });
             
-            message += `💰 *TOTAL: ${total.toLocaleString()}*%0A%0A`;
+            message += `💰 *TOTAL: $${total.toLocaleString()}*%0A%0A`;
             message += '¿Podrían confirmar disponibilidad?';
             
-            const whatsappNumber = '573XXXXXXXXX'; // REEMPLAZAR CON TU NÚMERO
-            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+            window.open(`https://wa.me/573007799229?text=${encodeURIComponent(message)}`, '_blank');
         });
 
-        // SLIDER
+        // SLIDER AUTOMÁTICO
         function startSlider() {
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.dot');
@@ -664,7 +668,7 @@
             
             setInterval(() => {
                 showSlide(currentSlide + 1);
-            }, 4000);
+            }, 5000);
         }
 
         // EVENT LISTENERS
@@ -716,14 +720,19 @@
                 document.getElementById('chatWindow').classList.remove('active');
             });
 
-            // Búsqueda
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                const query = e.target.value.toLowerCase();
-                const filtered = sampleProducts.filter(p => 
-                    p.name.toLowerCase().includes(query)
-                );
-                
-                if (query.length > 0) {
+            // Búsqueda (desktop y mobile)
+            function setupSearch(inputId) {
+                const input = document.getElementById(inputId);
+                if (!input) return;
+                input.addEventListener('input', (e) => {
+                    const query = e.target.value.toLowerCase().trim();
+                    if (query === '') {
+                        loadProducts();
+                        return;
+                    }
+                    const filtered = sampleProducts.filter(p => 
+                        p.name.toLowerCase().includes(query)
+                    );
                     products = filtered;
                     const grid = document.getElementById('productsGrid');
                     if (filtered.length === 0) {
@@ -731,10 +740,10 @@
                     } else {
                         loadProducts();
                     }
-                } else {
-                    loadProducts();
-                }
-            });
+                });
+            }
+            setupSearch('searchInput');
+            setupSearch('mobileSearchInput');
         }
     </script>
 </body>
