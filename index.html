@@ -1334,6 +1334,13 @@ function setupEventListeners() {
   </div>
 </div>
 
+<!-- Modal para ampliar el logo -->
+<div id="logoModal" class="modal-overlay" style="z-index: 5000;">
+  <div class="modal-content" style="background: transparent; box-shadow: none; max-width: none; width: auto; max-height: none; transform: none !important; display: flex; align-items: center; justify-content: center; padding: 0;">
+    <img src="logo.png" alt="Logo JUANDASANTIAGO" style="max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+  </div>
+</div>
+
 <!-- Contenidos ocultos (mejorados visualmente) -->
 <script type="text/template" id="content-about">
   <h2 style="color: #e64d8c; margin-top: 0; font-size: 28px; border-bottom: 2px solid #f5f5f5; padding-bottom: 12px;">Sobre Nosotros</h2>
@@ -1425,6 +1432,37 @@ function setupEventListeners() {
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
   });
+  
+	// === LOGO MODAL CLICK ===
+	const logoModal = document.getElementById('logoModal');
+	if (logoModal) {
+	  // Abrir al hacer clic en los logos
+	  document.querySelectorAll('header img[src="logo.png"], footer img[src="logo.png"]').forEach(img => {
+		img.addEventListener('click', (e) => {
+		  e.preventDefault();
+		  e.stopPropagation();
+		  logoModal.classList.add('active');
+		  document.body.style.overflow = 'hidden';
+		});
+	  });
+
+	  // Cerrar al hacer clic en el fondo (solo si el clic es en #logoModal, no en la imagen)
+	  logoModal.addEventListener('click', (e) => {
+		if (e.target === logoModal) {
+		  logoModal.classList.remove('active');
+		  document.body.style.overflow = '';
+		}
+	  });
+
+	  // Opcional: cerrar con tecla Esc
+	  const closeOnEsc = (e) => {
+		if (e.key === 'Escape' && logoModal.classList.contains('active')) {
+		  logoModal.classList.remove('active');
+		  document.body.style.overflow = '';
+		}
+	  };
+	  document.addEventListener('keydown', closeOnEsc);
+	}
 </script>
 </body>
 </html>
